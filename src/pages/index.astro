@@ -1,11 +1,20 @@
 ---
 import Layout from "../layouts/Layout.astro"
 import LeftAside from "../sections/LeftAside.astro"
+import Main from "../sections/Main.astro"
 const Tittle: string = "Hackaton Clerk"
 ---
 <Layout tittle={Tittle}>
-  
-  <LeftAside/>
-  
+  <div class="grid grid-cols-4">
+    <div class="col-span-1">
+      <LeftAside/>
+    </div>
+    <div class="col-span-2">
+      <Main/>
+    </div>
+    <div class="col-span-1">
+      <LeftAside/>
+    </div>
+  </div>
   
 </Layout>
