@@ -8,9 +8,10 @@ import node from '@astrojs/node'
 export default defineConfig({
   integrations: [clerk()],
   adapter: node({mode: "standalone"}),
-  output:"server",
   vite: {
     plugins: [tailwindcss ()],
 
-  }
+  },
+  output:"server",
+
 });
