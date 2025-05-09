@@ -1,0 +1,22 @@
+---
+import { publicaciones } from '../conts/publicaciones';
+import { createHighlighter } from 'shiki';
+---
+
+<div class="my-2 p-2">
+  {await Promise.all(
+    publicaciones.map(async (publicacion) => {
+      const highlighter = await createHighlighter({ themes: ['aurora-x'], langs: ['javascript','python','html'] });
+      const highlightedCode = highlighter.codeToHtml(publicacion.codigo, { lang: publicacion.lenguaje, theme: 'aurora-x' });
+
+      return (
+        <div class="my-2 p-4 bg-sky-900 ">
+          <h2>{publicacion.autor}</h2>
+          <p>{publicacion.contenido}</p>
+          <div class="mb-5" set:html={highlightedCode}></div>
+        </div>
+      );
+    })
+  )}
+</div>
+

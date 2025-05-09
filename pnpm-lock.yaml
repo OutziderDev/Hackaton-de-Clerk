@@ -23,6 +23,10 @@ importers:
       tailwindcss:
         specifier: 4.1.5
         version: 4.1.5
+    devDependencies:
+      shiki:
+        specifier: ^3.4.0
+        version: 3.4.0
 
 packages:
 
