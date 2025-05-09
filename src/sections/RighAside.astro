@@ -5,11 +5,15 @@ import { usuarios } from "../conts/usuarios"
   <h3 class="text-zinc-400 font-bold  ">Usuarios Recomendados</h3>
   {
     usuarios.map((usuario) => (
-      <div class="card mt-4 p-4 border rounded shadow-sm">
-      <h4 class="text-lg font-bold">{usuario.nombre}</h4>
-      <p class="text-sm text-zinc-500">{usuario.username}</p>
-      <img src={`${usuario.avatar}`} alt=""/>
-      </div>
+      <a href="">
+        <div class="flex flex-row border border-sky-500/30 rounded-md my-4 overflow-hidden h-28 items-center justify-center gap-8">
+          <img src={`${usuario.avatar}`} class="size-20 object-cover rounded-sm" alt={`Imagen de ${usuario.nombre}`}/>
+          <div class="">
+            <h4 class="text-lg font-bold">{usuario.nombre}</h4>
+            <p class="text-sm text-zinc-500">{usuario.username}</p>
+          </div>
+        </div>
+      </a>
     ))
   }
 </aside>
