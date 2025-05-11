@@ -1,19 +1,21 @@
 ---
 import { publicaciones } from '../conts/publicaciones';
-import { createHighlighter } from 'shiki';
+import {  codeToHtml } from 'shiki';
 ---
 
+<div>
+</div>
 <section class="">
   {await Promise.all(
     publicaciones.map(async (publicacion) => {
-      const highlighter = await createHighlighter({ themes: ['aurora-x'], langs: [`${publicacion.lenguaje}`] });
-      const highlightedCode = highlighter.codeToHtml(publicacion.codigo, { lang: publicacion.lenguaje, theme: 'aurora-x' });
+      /* const highlighter = await createHighlighter({ themes: ['andromeeda'], langs: [`${publicacion.lenguaje}`] }); */ //no recomendado en bucles
+      const highlightedCode = await codeToHtml(publicacion.codigo, { lang: publicacion.lenguaje, theme: 'aurora-x'});
 
       return (
-        <div class="my-2 p-4 bg-sky-900 ">
+        <div class="my-2 p-4 bg-gray-900/90 border border-white/30 rounded-lg ">
           <h2>{publicacion.autor}</h2>
           <p>{publicacion.contenido}</p>
-          <div class="bg-black p-4" set:html={highlightedCode}></div>
+          <div class="bg-zinc-950 border border-white/30 rounded-lg p-4" set:html={highlightedCode} ></div>
         </div>
       );
     })
