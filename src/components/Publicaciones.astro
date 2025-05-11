@@ -16,10 +16,20 @@ import {  codeToHtml } from 'shiki';
         <a href="">
           <div class="my-2 p-4 bg-gray-900/90 border border-white/30 rounded-lg ">
             <div>
-              
-              <p>{publicacion.contenido}</p>
+              <div class="flex justify-between items-center border-b border-white/30">
+                <div class="flex gap-2 items-center">
+                  <img src="/images/img1.webp" class="object-cover size-10 rounded-full" alt=""/>
+                  <h2 class="font-bold text-xl">{publicacion.autor}</h2>
+                </div>
+                <span class="opacity-50">29/08/2024</span>
+              </div>
+              <p class="my-3">{publicacion.contenido}</p>
             </div>
             <div class="bg-zinc-950 border border-white/30 rounded-lg p-4" set:html={highlightedCode} ></div>
+            {/* social media */}
+            <div class="flex">
+
+            </div>
           </div>
         </a>
       );
