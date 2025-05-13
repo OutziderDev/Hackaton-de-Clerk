@@ -3,7 +3,6 @@ import { defineConfig } from 'astro/config';
 import tailwindcss  from '@tailwindcss/vite';
 import clerk from '@clerk/astro';
 import node from '@astrojs/node'
-
 import react from '@astrojs/react';
 
 // https://astro.build/config
