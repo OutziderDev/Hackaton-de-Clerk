@@ -3,7 +3,10 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme{
-  --color-primario:#0d0f1a;
-  --color-secundario: #151925;
-  --color-terciario: #fff3;
+  --color-dark-primario:#0d0f1a;
+  --color-dark-secundario: #151925;
+  --color-dark-terciario: #fff3;
+
+  --color-light-primario: #fafafa;
+  --color-light-secundario: #d1d5dc
 }
