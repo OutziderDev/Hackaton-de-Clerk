@@ -8,7 +8,8 @@
   --color-dark-terciario: #fff3;
 
   --color-light-primario: #fafafa;
-  --color-light-secundario: #d1d5dc
+  --color-light-secundario: #f0f2f5;
+  --color-light-terciario:#d1d5dc
 }
 
 html.dark .shiki,
