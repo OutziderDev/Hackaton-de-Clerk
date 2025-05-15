@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 @import "tailwindcss";
 
+/* Set Variante para DarkMode */
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme{
@@ -9,9 +11,12 @@
 
   --color-light-primario: #fafafa;
   --color-light-secundario: #f0f2f5;
-  --color-light-terciario:#d1d5dc
+  --color-light-terciario:#d1d5dc;
+
+  --font-outfit: "Outfit", sans-serif; 
 }
 
+/* Clases para dark mode de shiki */
 html.dark .shiki,
 html.dark .shiki span {
   color: var(--shiki-dark) !important;

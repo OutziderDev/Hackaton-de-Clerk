@@ -1,23 +1,55 @@
 ---
 
 ---
-<section class="p-4 w-full border border-light-terciario dark:border-dark-terciario bg-light-primario dark:bg-dark-secundario  rounded-lg">
-  <h3>Nueva Publicacion:</h3>
+<section  class="p-4 w-full border border-light-terciario dark:border-dark-terciario bg-light-primario dark:bg-dark-secundario rounded-lg">
   <form id="formPost" class="w-full mt-3">
-    
-    <!-- <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your message</label> -->
-    <textarea id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Share a ideas or Ask a question..."></textarea>
+    <fieldset class="border border-light-terciario dark:border-dark-terciario p-2 rounded-md">
+      <legend class=" dark:text-sky-500">Nueva Publicacion</legend>
+      <textarea
+        id="message"
+        maxlength="255"
+        class="w-full  border border-transparent bg-transparent resize-none overflow-hidden  dark:text-white placeholder-neutral-500 focus:outline-none  "
+        placeholder="¿Qué hay de nuevo?"></textarea>
+      
+        <input
+        type="file"
+        placeholder="Arrastra o Selecciona tus archivos"
+        class="bg-transparent border border-"
+        accept="image/webp, image/jpeg"
+        name="multimedia"
+        id="multimedia"
+      />
+    </fieldset>
     <div class="flex justify-between mt-3">
-      <button class="bg-sky-500 hover:bg-sky-700 transition-colors px-4 py-2 rounded-lg cursor-pointer">+ PAD</button>
-      <button class="bg-sky-500 hover:bg-sky-700 transition-colors px-4 py-2 rounded-lg cursor-pointer">Publicar</button>
+      <button
+        class="bg-sky-500 hover:bg-sky-700 transition-colors px-4 py-2 rounded-lg cursor-pointer"
+        >+ PAD</button
+      >
+      <button0
+        class="bg-sky-500 hover:bg-sky-700 transition-colors px-4 py-2 rounded-lg cursor-pointer"
+        >Publicar</button
+      >
     </div>
   </form>
-
 </section>
 
 <script>
   document.getElementById("formPost")?.addEventListener("submit", function (e) {
     e.preventDefault();
-    alert('hola')
-  })
+    alert("hola");
+  });
+</script> 
+<script>
+  
+
+  const textarea = document.getElementById("message")!;
+
+  textarea.addEventListener("input", () => {
+    textarea.style.height = "auto";
+    textarea.style.height = textarea.scrollHeight + "px";
+  });
+
+  // Ajuste inicial
+  textarea.style.height = "auto";
+  textarea.style.height = textarea.scrollHeight + "px";
 </script>
