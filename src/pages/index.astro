@@ -6,14 +6,14 @@ import RighAside from "../sections/RighAside.astro"
 const Tittle: string = "Hackaton Clerk"
 ---
 <Layout tittle={Tittle}>
-  <div class="grid grid-cols-4">
-    <div class="col-span-1">
+  <div class="grid grid-cols-1 md:grid-cols-4">
+    <div class="col-span-1 hidden md:block">
       <LeftAside/>
     </div>
     <div class="col-span-2">
       <Main/>
     </div>
-    <div class="col-span-1">
+    <div class="col-span-1 hidden md:block">
       <RighAside/>
     </div>
   </div>
