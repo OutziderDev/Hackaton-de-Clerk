@@ -6,20 +6,20 @@
     <fieldset class="border border-light-terciario dark:border-dark-terciario p-2 rounded-md">
       <legend class=" dark:text-sky-500">Nueva Publicacion</legend>
       <textarea
-        id="message"
+        id="mensaje"
+        name="mensaje"
         maxlength="255"
         class="w-full  border border-transparent bg-transparent resize-none overflow-hidden  dark:text-white placeholder-neutral-500 focus:outline-none  "
-        placeholder="¿Qué hay de nuevo?"></textarea>
+        placeholder="¿Qué hay de nuevo?" 
+      ></textarea>
       
-        <input
-        type="file"
-        placeholder="Arrastra o Selecciona tus archivos"
-        class="bg-transparent border border-"
-        accept="image/webp, image/jpeg"
-        name="multimedia"
-        id="multimedia"
-      />
+      <input type="file" name="multimedia" id="multimedia" 
+        class="w-full bg-transparent border border-light-terciario dark:border-dark-terciario border-dashed p-4 hover:border-green-600"
+        accept="image/webp, image/jpeg" 
+      >
+      
     </fieldset>
+
     <div class="flex justify-between mt-3">
       <button
         class="bg-sky-500 hover:bg-sky-700 transition-colors px-4 py-2 rounded-lg cursor-pointer"
@@ -42,7 +42,7 @@
 <script>
   
 
-  const textarea = document.getElementById("message")!;
+  const textarea = document.getElementById("mensaje")!;
 
   textarea.addEventListener("input", () => {
     textarea.style.height = "auto";
