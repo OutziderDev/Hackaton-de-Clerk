@@ -6,7 +6,7 @@ import { usuarios } from "../conts/usuarios"
   {
     usuarios.map((usuario) => (
       <a href="/">
-        <div class="flex flex-row border border-light-terciario dark:border-dark-terciario rounded-md my-3 overflow-hidden h-28 w-full items-center justify-center gap-6 bg-light-primario dark:bg-dark-secundario">
+        <div class="flex flex-row border border-light-terciario dark:border-dark-terciario rounded-md my-3 overflow-hidden h-28 w-full items-center justify-center gap-6 bg-light-primario dark:bg-dark-secundario transition-colors">
           <div class="w-1/4">
             <img src={`${usuario.avatar}`} class="object-cover rounded-sm" alt={`Imagen de ${usuario.nombre}`}/>
           </div>

@@ -9,9 +9,20 @@ import Header from "../sections/Header.astro";
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<title>Hackaton Clerk</title>
+    <!-- Link rel de Toggle -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/theme-toggles@4.10.1/css/expand.min.css">
+
+    <!-- Links rel de Filepond -->
+    <link href="https://unpkg.com/filepond@^4/dist/filepond.min.css" rel="stylesheet" />
+
+    <!-- FilePond + plugin de previsualización y validación de tipo -->
+    <script src="https://unpkg.com/filepond@^4/dist/filepond.min.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.min.js"></script>
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css" rel="stylesheet" />
+
 	</head>
-	<body class="bg-light-secundario dark:bg-dark-primario text-black dark:text-white font-outfit">
+	<body class="bg-light-secundario dark:bg-dark-primario text-black dark:text-white font-outfit transition-colors">
     <Header/>
     <main class="max-w-6xl mx-auto">
       <slot>
