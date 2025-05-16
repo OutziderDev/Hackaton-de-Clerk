@@ -1,58 +1,36 @@
 ---
+import InputFile from "./InputFile.astro";
+const signos = "</>";
 
 ---
-<section  class="p-4 w-full border border-light-terciario dark:border-dark-terciario bg-light-primario dark:bg-dark-secundario rounded-lg">
+<fieldset   class="p-4 w-full border border-light-terciario dark:border-dark-terciario bg-light-primario dark:bg-dark-secundario rounded-lg">
+  <legend class=" dark:text-sky-500">Nueva Publicacion</legend>
   <form id="formPost" class="w-full mt-3">
-    <fieldset class="border border-light-terciario dark:border-dark-terciario p-2 rounded-md">
-      <legend class=" dark:text-sky-500">Nueva Publicacion</legend>
-      <textarea
-        id="mensaje"
-        name="mensaje"
-        maxlength="255"
-        class="w-full  border border-transparent bg-transparent resize-none overflow-hidden  dark:text-white placeholder-neutral-500 focus:outline-none  "
-        placeholder="¿Qué hay de nuevo?" 
-      ></textarea>
+    
+    <textarea
+      id="mensaje"
+      name="mensaje"
+      maxlength="255"
+      class="w-full  border border-transparent bg-transparent resize-none overflow-hidden  dark:text-white placeholder-neutral-500 focus:outline-none  "
+      placeholder="¿Qué hay de nuevo?" 
+    ></textarea>
       
-      <!-- <input type="file" name="multimedia" id="multimedia" 
-        class="w-full bg-transparent border border-light-terciario dark:border-dark-terciario border-dashed p-4 hover:border-green-600"
-        accept="image/webp, image/jpeg" 
-      > -->
-      <div class="">
-        <input type="file"name="multimedia"id="multimedia" class="filepond" multiple accept="image/webp, image/jpeg, image/png"/>
-      </div>
-      
-    </fieldset>
+    <InputFile/>
 
-    <div class="flex justify-between mt-3">
+    <div class="flex justify-between mt-3 p-2">
+      <div class="flex gap-4 items-center justify-center">
+        <div class="hover:dark:bg-dark-terciario hover:bg-light-secundario rounded-full p-2 cursor-pointer">{signos}</div>
+        <div class="hover:dark:bg-dark-terciario hover:bg-light-secundario rounded-full p-2 cursor-pointer"><svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-photo-scan"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 8h.01" /><path d="M6 13l2.644 -2.644a1.21 1.21 0 0 1 1.712 0l3.644 3.644" /><path d="M13 13l1.644 -1.644a1.21 1.21 0 0 1 1.712 0l1.644 1.644" /><path d="M4 8v-2a2 2 0 0 1 2 -2h2" /><path d="M4 16v2a2 2 0 0 0 2 2h2" /><path d="M16 4h2a2 2 0 0 1 2 2v2" /><path d="M16 20h2a2 2 0 0 0 2 -2v-2" /></svg></div>
+      </div>
       <button
-        class="bg-sky-500 hover:bg-sky-700 transition-colors px-4 py-2 rounded-lg cursor-pointer"
-        >+ PAD</button
-      >
-      <button0
         class="bg-sky-500 hover:bg-sky-700 transition-colors px-4 py-2 rounded-lg cursor-pointer"
         >Publicar</button
       >
     </div>
   </form>
-</section>
+</fieldset>
 
-<style is:global>
-  
-/* Esto anula el fondo blanco */
-  .filepond--drop-label {
-    background-color: transparent !important;
-  }
 
-  .filepond--panel-root {
-    background-color: transparent !important;
-    border: 1px dashed rgba(128, 128, 128, 0.688);
-  }
-
-  /* Cambiar color del texto */
-  .filepond--label-action {
-    color: #38bdf8 !important; /* sky-400 */
-  }
-</style>
 
 <script >
   document.getElementById("formPost")?.addEventListener("submit", function (e) {
@@ -71,21 +49,4 @@
   // Ajuste inicial
   textarea.style.height = "auto";
   textarea.style.height = textarea.scrollHeight + "px";
-</script>
-
-<script type="module">
-  // Registrar los plugins que necesitas
-  FilePond.registerPlugin(
-    FilePondPluginImagePreview,
-    FilePondPluginFileValidateType
-  );
-
-  // Inicializar FilePond en el input con ID "multimedia"
-  FilePond.create(document.getElementById('multimedia'), {
-    acceptedFileTypes: ['image/webp', 'image/jpeg'],
-    allowMultiple: true,
-    labelFileTypeNotAllowed: 'Solo se permiten imágenes webp o jpeg',
-    fileValidateTypeLabelExpectedTypes: 'Debe ser una imagen webp o jpeg',
-    instantUpload: false // si quieres que espere al submit
-  });
 </script>
