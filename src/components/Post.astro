@@ -1,5 +1,5 @@
 ---
-import CodeSnippet from "./CodeSnippet.astro";
+import LenguageCode from './LenguageCode.astro'
 import InputFile from "./InputFile.astro";
 const signos = "</>";
 ---
@@ -11,12 +11,34 @@ const signos = "</>";
       required
       id="mensaje"
       name="mensaje"
-      maxlength="255"
-      class="w-full text-xl border border-transparent bg-transparent resize-none overflow-hidden  dark:text-white placeholder-neutral-500 focus:outline-none  "
+      maxlength="260"
+      class="w-full  text-xl border border-transparent bg-transparent resize-none overflow-hidden  dark:text-white placeholder-neutral-500 focus:outline-none"
       placeholder="¿Qué hay de nuevo?" 
     ></textarea>
 
-    <input type="checkbox" name="isPAD" id="isPAd" checked>
+    <div class="flex flex-col md:flex-row items-center justify-start gap-8 mb-3">
+      
+      <select id="lenguajes" required class="bg-light-primario dark:bg-dark-secundario border border-light-terciario dark:border-dark-terciario rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full md:w-1/2 p-2">
+        <option value="Javascript">Javascript</option>
+        <option value="React">React</option>
+        <option value="Express">Express</option>
+        <option value="Python">Python</option>
+        <option value="C++">C++</option>
+      </select>
+      
+      <label for="isPAD" class="flex gap-2 text-lg items-center ">
+        <input type="checkbox" class="size-4 " name="isPAD" id="isPAd" checked> Pregunta Rapida 
+      </label>
+    </div>
+
+    <textarea
+      required
+      id="codigo"
+      name="codigo"
+      maxlength="300"
+      class="w-full text-xl border dark:border-dark-terciario rounded-md p-2 bg-transparent resize-none overflow-hidden  dark:text-white placeholder-neutral-500 focus:outline-none"
+      placeholder="¿Qué estas Programando?" 
+    ></textarea>
       
     <InputFile/>
 
@@ -26,7 +48,6 @@ const signos = "</>";
       <div class="flex gap-4 items-center justify-center">
         <button class="hover:dark:bg-dark-terciario hover:bg-light-secundario rounded-full p-2 cursor-pointer">{signos}</button>
         <div class="hover:dark:bg-dark-terciario hover:bg-light-secundario rounded-full p-2 cursor-pointer"><svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-photo-scan"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 8h.01" /><path d="M6 13l2.644 -2.644a1.21 1.21 0 0 1 1.712 0l3.644 3.644" /><path d="M13 13l1.644 -1.644a1.21 1.21 0 0 1 1.712 0l1.644 1.644" /><path d="M4 8v-2a2 2 0 0 1 2 -2h2" /><path d="M4 16v2a2 2 0 0 0 2 2h2" /><path d="M16 4h2a2 2 0 0 1 2 2v2" /><path d="M16 20h2a2 2 0 0 0 2 -2v-2" /></svg></div>
-        <CodeSnippet />
       </div>
       <button type="submit"
         class="bg-sky-500 hover:bg-sky-700 transition-colors px-4 py-2 rounded-lg cursor-pointer"
@@ -35,6 +56,11 @@ const signos = "</>";
     </div>
   </form>
 </fieldset>
+
+
+<script>
+
+</script>
 
 <script>
   const formulario = document.getElementById("formPost")
@@ -54,14 +80,16 @@ const signos = "</>";
 
 <!-- Controlar altura automatica del contenedor de comentario -->
 <script>
-  const textarea = document.getElementById("mensaje")!;
+  const textareas = document.querySelectorAll('textarea');
 
-  textarea.addEventListener("input", () => {
+  textareas.forEach(textarea => {
+    textarea.addEventListener("input", () => {
+      textarea.style.height = "auto";
+      textarea.style.height = textarea.scrollHeight + "px";
+    });
+
+    // Ajuste inicial
     textarea.style.height = "auto";
     textarea.style.height = textarea.scrollHeight + "px";
   });
-
-  // Ajuste inicial
-  textarea.style.height = "auto";
-  textarea.style.height = textarea.scrollHeight + "px";
 </script>

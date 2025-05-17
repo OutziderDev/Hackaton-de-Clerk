@@ -38,9 +38,12 @@
     credits: false,
     acceptedFileTypes: ['image/webp', 'image/jpeg','image/png','image/gif'],
     allowMultiple: true,
-    labelFileTypeNotAllowed: 'Solo se permiten imágenes webp o jpeg',
-    labelIdle: '🌄​ Arrastra tus imágenes aquí o click para buscar',
-    fileValidateTypeLabelExpectedTypes: 'Debe ser una imagen webp o jpeg',
-    instantUpload: false // si quieres que espere al submit
+    labelFileTypeNotAllowed: 'Solo se permiten imágenes png, jpeg o gif',
+    labelIdle: '🌄​ Arrastra tus imágenes aquí o haz click para añadir',
+    fileValidateTypeLabelExpectedTypes: 'Debe ser una imagen png, gif o jpeg',
+    instantUpload: false //espera al submit
   });
+
+  
+  console.log('datos de file:', FilePond.getFile())
 </script>
