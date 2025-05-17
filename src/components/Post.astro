@@ -13,12 +13,12 @@ const signos = "</>";
       name="mensaje"
       maxlength="260"
       class="w-full  text-xl border border-transparent bg-transparent resize-none overflow-hidden  dark:text-white placeholder-neutral-500 focus:outline-none"
-      placeholder="¿Qué hay de nuevo?" 
+      placeholder="¿En qué piensas hoy?" 
     ></textarea>
 
     <div class="flex flex-col md:flex-row items-center justify-start gap-8 mb-3">
       
-      <select id="lenguajes" required  class="bg-light-primario dark:bg-dark-secundario border border-light-terciario dark:border-dark-terciario rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full md:w-1/2 p-2">
+      <select id="lenguajes" required disabled class="hidden bg-light-primario dark:bg-dark-secundario border border-light-terciario dark:border-dark-terciario rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full md:w-1/2 p-2">
         <option value="Javascript">Javascript</option>
         <option value="React">React</option>
         <option value="Express">Express</option>
@@ -26,22 +26,22 @@ const signos = "</>";
         <option value="C++">C++</option>
       </select>
       
-      <label for="isPAD" id="labelToPAD" class=" gap-2 text-lg items-center ">
-        <input type="checkbox" class="size-4 " name="isPAD" id="isPAD" > Pregunta Rapida 
+      <label for="isPAD" id="labelToPAD" class=" gap-2 text-lg items-center hidden">
+        <input type="checkbox" class="size-4 " disabled name="isPAD" id="isPAD" > Pregunta Rapida 
       </label>
     </div>
 
     <textarea
       required
-      
+      disabled
       id="codigo"
       name="codigo"
       maxlength="300"
-      class="w-full text-xl border dark:border-dark-terciario rounded-md p-2 bg-transparent resize-none overflow-hidden  dark:text-white placeholder-neutral-500 focus:outline-none"
-      placeholder="¿Qué estas Programando?" 
+      class="hidden w-full text-xl border border-light-terciario dark:border-dark-terciario rounded-md p-2 bg-transparent resize-none overflow-hidden  dark:text-white placeholder-neutral-500 focus:outline-none"
+      placeholder=`Copia tu fragmento de código aquí  \n Ejemplo: \n const sum = (a,b) = return a+b` 
     ></textarea>
       
-    <InputFile/>
+    <InputFile />
 
     <!-- <CodeSnippet /> -->
 
@@ -59,64 +59,7 @@ const signos = "</>";
 </fieldset>
 
 
-<script>
-  const textAreaCode = document.getElementById('codigo')
-  const selecLenguaje = document.getElementById('lenguajes')
-  const checkPad = document.getElementById('isPAD')
-  const labelPAd = document.getElementById('labelToPAD')
-  const btnToCode = document.getElementById('btnCode')
-  const btnToMedia = document.getElementById('btnMedia')
-  const media = (document.getElementsByName('multimedia') )
-  const inputMedia = (media[0])
-
-  btnToCode?.addEventListener('click', () => {
-    textAreaCode?.classList.remove('hidden')
-    textAreaCode?.removeAttribute('disabled')
-
-    selecLenguaje?.classList.remove('hidden')
-    selecLenguaje?.removeAttribute('disabled')
-
-    labelPAd?.classList.remove('hidden')
-    checkPad?.removeAttribute('disabled')
-
-    inputMedia.classList.add('hidden')
-  })
-
-  btnToMedia?.addEventListener('click', ()=>{
-    
-    textAreaCode?.setAttribute('disabled', 'true')
-    textAreaCode?.classList.add('hidden')
-
-    selecLenguaje?.setAttribute('disabled', 'true')
-    selecLenguaje?.classList.add('hidden')
-
-    labelPAd?.classList.add('hidden')
-    checkPad?.setAttribute('disabled', 'true')
-
-    inputMedia.classList.remove('hidden')
-    inputMedia.removeAttribute('disabled')
-  })
-  
-</script>
-
-<script>
-  const formulario = document.getElementById("formPost")
-  formulario?.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    
-    const msg = (document.getElementById('mensaje') as HTMLTextAreaElement).value
-    const checkbox = (document.getElementById('isPAD') as HTMLInputElement).checked
-    const media = (document.getElementsByName('multimedia') )
-    const inputMedia = (media[0] as HTMLInputElement).files
-    
-    console.log('data:', msg)
-    console.log('check:', checkbox)
-    console.log('media', inputMedia)
-  })
-</script> 
-
-<!-- Controlar altura automatica del contenedor de comentario -->
-<script>
+<script >
   const textareas = document.querySelectorAll('textarea');
 
   textareas.forEach(textarea => {
@@ -129,4 +72,89 @@ const signos = "</>";
     textarea.style.height = "auto";
     textarea.style.height = textarea.scrollHeight + "px";
   });
+
+  /* Administrar los Atributos para Evitar Tabs */
+  const textAreaCode = document.getElementById('codigo')
+  const selecLenguaje = document.getElementById('lenguajes')
+  const checkPad = document.getElementById('isPAD')
+  const labelPAd = document.getElementById('labelToPAD')
+  const btnToCode = document.getElementById('btnCode')
+  const btnToMedia = document.getElementById('btnMedia')
+  const mensajeTextArea = document.getElementById('mensaje')
+  const media = document.querySelector('.custon')
+
+  btnToCode?.addEventListener('click', () => {
+    if (textAreaCode) {
+      textAreaCode.classList.remove('hidden');
+      textAreaCode.style.height = "150px";
+      textAreaCode.removeAttribute('disabled');
+    }
+
+    (mensajeTextArea as HTMLTextAreaElement).placeholder = "Descripción de tu Código"
+
+    selecLenguaje?.classList.remove('hidden')
+    selecLenguaje?.removeAttribute('disabled')
+
+    labelPAd?.classList.remove('hidden')
+    checkPad?.removeAttribute('disabled')
+
+    media?.classList.add('hidden')
+  })
+
+  btnToMedia?.addEventListener('click', ()=>{
+
+    (mensajeTextArea as HTMLTextAreaElement).placeholder = "¿En qué piensas hoy?" 
+    
+    textAreaCode?.setAttribute('disabled', 'true')
+    textAreaCode?.classList.add('hidden')
+
+    selecLenguaje?.setAttribute('disabled', 'true')
+    selecLenguaje?.classList.add('hidden')
+
+    checkPad?.setAttribute('disabled', 'true')
+    labelPAd?.classList.add('hidden')
+
+    
+    media?.classList.remove('hidden') 
+  })
+  /* const show = el => el?.classList.remove('hidden') || el?.removeAttribute('disabled');
+  const hide = el => el?.classList.add('hidden') || el?.setAttribute('disabled', 'true');
+
+  btnToCode?.addEventListener('click', () => {
+    show(textAreaCode);
+    if (textAreaCode) textAreaCode.style.height = "150px";
+
+    if (mensajeTextArea) mensajeTextArea.placeholder = "Descripción de tu Código";
+
+    show(selecLenguaje);
+    show(labelPAd);
+    show(checkPad);
+    hide(media);
+  });
+
+  btnToMedia?.addEventListener('click', () => {
+    if (mensajeTextArea) mensajeTextArea.placeholder = "¿En qué piensas hoy?";
+
+    hide(textAreaCode);
+    hide(selecLenguaje);
+    hide(labelPAd);
+    hide(checkPad);
+    show(media);
+  }); */
 </script>
+
+<script>
+  const formulario = document.getElementById("formPost")
+  formulario?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    
+    const msg = (document.getElementById('mensaje') as HTMLTextAreaElement).value
+    const checkbox = (document.getElementById('isPAD') as HTMLInputElement).checked
+    const media = (document.getElementsByName('multimedia') )
+    const inputMedia = (media[0] as HTMLInputElement)
+    
+    console.log('data:', msg)
+    console.log('check:', checkbox)
+    console.log('media', inputMedia)
+  })
+</script> 
