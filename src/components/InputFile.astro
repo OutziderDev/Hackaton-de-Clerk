@@ -2,7 +2,8 @@
 
 ---
 <input type="file" name="multimedia" id="multimedia"
-  class="filepond" 
+  class="filepond hidden"
+  disabled 
   multiple 
   accept="image/webp, image/jpeg, image/png, image/gif" 
   data-max-file-size="3MB" 
@@ -44,6 +45,4 @@
     instantUpload: false //espera al submit
   });
 
-  
-  console.log('datos de file:', FilePond.getFile())
 </script>

@@ -18,7 +18,7 @@ const signos = "</>";
 
     <div class="flex flex-col md:flex-row items-center justify-start gap-8 mb-3">
       
-      <select id="lenguajes" required class="bg-light-primario dark:bg-dark-secundario border border-light-terciario dark:border-dark-terciario rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full md:w-1/2 p-2">
+      <select id="lenguajes" required  class="bg-light-primario dark:bg-dark-secundario border border-light-terciario dark:border-dark-terciario rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full md:w-1/2 p-2">
         <option value="Javascript">Javascript</option>
         <option value="React">React</option>
         <option value="Express">Express</option>
@@ -26,13 +26,14 @@ const signos = "</>";
         <option value="C++">C++</option>
       </select>
       
-      <label for="isPAD" class="flex gap-2 text-lg items-center ">
-        <input type="checkbox" class="size-4 " name="isPAD" id="isPAd" checked> Pregunta Rapida 
+      <label for="isPAD" id="labelToPAD" class=" gap-2 text-lg items-center ">
+        <input type="checkbox" class="size-4 " name="isPAD" id="isPAD" > Pregunta Rapida 
       </label>
     </div>
 
     <textarea
       required
+      
       id="codigo"
       name="codigo"
       maxlength="300"
@@ -46,20 +47,56 @@ const signos = "</>";
 
     <div class="flex justify-between mt-3 p-2">
       <div class="flex gap-4 items-center justify-center">
-        <button class="hover:dark:bg-dark-terciario hover:bg-light-secundario rounded-full p-2 cursor-pointer">{signos}</button>
-        <div class="hover:dark:bg-dark-terciario hover:bg-light-secundario rounded-full p-2 cursor-pointer"><svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-photo-scan"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 8h.01" /><path d="M6 13l2.644 -2.644a1.21 1.21 0 0 1 1.712 0l3.644 3.644" /><path d="M13 13l1.644 -1.644a1.21 1.21 0 0 1 1.712 0l1.644 1.644" /><path d="M4 8v-2a2 2 0 0 1 2 -2h2" /><path d="M4 16v2a2 2 0 0 0 2 2h2" /><path d="M16 4h2a2 2 0 0 1 2 2v2" /><path d="M16 20h2a2 2 0 0 0 2 -2v-2" /></svg></div>
+        <div id="btnCode" class="hover:dark:bg-dark-terciario hover:bg-light-secundario rounded-full p-2 cursor-pointer">{signos}</div>
+        <div id="btnMedia" class="hover:dark:bg-dark-terciario hover:bg-light-secundario rounded-full p-2 cursor-pointer"><svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-photo-scan"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 8h.01" /><path d="M6 13l2.644 -2.644a1.21 1.21 0 0 1 1.712 0l3.644 3.644" /><path d="M13 13l1.644 -1.644a1.21 1.21 0 0 1 1.712 0l1.644 1.644" /><path d="M4 8v-2a2 2 0 0 1 2 -2h2" /><path d="M4 16v2a2 2 0 0 0 2 2h2" /><path d="M16 4h2a2 2 0 0 1 2 2v2" /><path d="M16 20h2a2 2 0 0 0 2 -2v-2" /></svg></div>
       </div>
       <button type="submit"
         class="bg-sky-500 hover:bg-sky-700 transition-colors px-4 py-2 rounded-lg cursor-pointer"
-        >Publicar</button
-      >
+        >Publicar
+      </button>
     </div>
   </form>
 </fieldset>
 
 
 <script>
+  const textAreaCode = document.getElementById('codigo')
+  const selecLenguaje = document.getElementById('lenguajes')
+  const checkPad = document.getElementById('isPAD')
+  const labelPAd = document.getElementById('labelToPAD')
+  const btnToCode = document.getElementById('btnCode')
+  const btnToMedia = document.getElementById('btnMedia')
+  const media = (document.getElementsByName('multimedia') )
+  const inputMedia = (media[0])
 
+  btnToCode?.addEventListener('click', () => {
+    textAreaCode?.classList.remove('hidden')
+    textAreaCode?.removeAttribute('disabled')
+
+    selecLenguaje?.classList.remove('hidden')
+    selecLenguaje?.removeAttribute('disabled')
+
+    labelPAd?.classList.remove('hidden')
+    checkPad?.removeAttribute('disabled')
+
+    inputMedia.classList.add('hidden')
+  })
+
+  btnToMedia?.addEventListener('click', ()=>{
+    
+    textAreaCode?.setAttribute('disabled', 'true')
+    textAreaCode?.classList.add('hidden')
+
+    selecLenguaje?.setAttribute('disabled', 'true')
+    selecLenguaje?.classList.add('hidden')
+
+    labelPAd?.classList.add('hidden')
+    checkPad?.setAttribute('disabled', 'true')
+
+    inputMedia.classList.remove('hidden')
+    inputMedia.removeAttribute('disabled')
+  })
+  
 </script>
 
 <script>
@@ -68,7 +105,7 @@ const signos = "</>";
     event.preventDefault();
     
     const msg = (document.getElementById('mensaje') as HTMLTextAreaElement).value
-    const checkbox = (document.getElementById('isPAd') as HTMLInputElement).checked
+    const checkbox = (document.getElementById('isPAD') as HTMLInputElement).checked
     const media = (document.getElementsByName('multimedia') )
     const inputMedia = (media[0] as HTMLInputElement).files
     
