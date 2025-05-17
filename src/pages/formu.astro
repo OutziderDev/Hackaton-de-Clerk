@@ -1,0 +1,73 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+
+---
+
+<Layout>
+  <form id="miFormulario">
+    <div>
+      <label for="miTexto">Texto:</label>
+      <textarea id="miTexto"></textarea>
+    </div>
+    <div>
+      <input type="checkbox" id="miCheckbox" name="miCheckbox">
+      <label for="miCheckbox">Checkbox</label>
+    </div>
+    <div>
+      <label for="miArchivo">Archivo(s):</label>
+      <input type="file" id="miArchivo" multiple name="miArchivo">
+    </div>
+    <div>
+      <label for="miSelect">Selección:</label>
+      <select id="miSelect" name="miSelect">
+        <option value="opcion1">Opción 1</option>
+        <option value="opcion2">Opción 2</option>
+        <option value="opcion3">Opción 3</option>
+      </select>
+    </div>
+    <button type="submit">Enviar</button>
+  </form>
+</Layout>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const formulario = document.getElementById('miFormulario');
+
+      formulario?.addEventListener('submit', async (event) => {
+        event.preventDefault(); // Evita la recarga de la página
+
+        const texto = (document.getElementById('miTexto') as HTMLTextAreaElement).value;
+        const checkbox = (document.getElementById('miCheckbox') as HTMLInputElement).checked;
+        const archivos = (document.getElementById('miArchivo') as HTMLInputElement).files;
+        console.log('archivos', archivos)
+        const seleccion = (document.getElementById('miSelect') as HTMLSelectElement).value;
+
+        const formData = new FormData();
+        formData.append('texto', texto);
+        formData.append('checkbox', checkbox.toString());
+        if (archivos) {
+          for (const archivo of archivos) {
+            formData.append('archivos', archivo);
+          }
+        }
+        formData.append('seleccion', seleccion);
+        console.log('data', formData)
+        try {
+          const response = await fetch('/api/procesar-formulario', { // Reemplaza con tu endpoint
+            method: 'POST',
+            body: formData,
+          });
+
+          if (response.ok) {
+            console.log('Formulario enviado con éxito');
+            /* formulario.reset();  */// Limpia el formulario
+          } else {
+            console.error('Error al enviar el formulario');
+          }
+        } catch (error) {
+          console.error('Error de red:', error);
+        }
+      });
+    });
+  </script>

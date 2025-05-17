@@ -2,19 +2,21 @@
 import CodeSnippet from "./CodeSnippet.astro";
 import InputFile from "./InputFile.astro";
 const signos = "</>";
-
 ---
 <fieldset   class="p-4 w-full border border-light-terciario dark:border-dark-terciario bg-light-primario dark:bg-dark-secundario rounded-lg">
   <legend class=" dark:text-sky-500">Nueva Publicacion</legend>
-  <form id="formPost" class="w-full mt-3">
+  <form id="formPost" enctype="multipart/form-data" class="w-full">
     
     <textarea
+      required
       id="mensaje"
       name="mensaje"
       maxlength="255"
-      class="w-full  border border-transparent bg-transparent resize-none overflow-hidden  dark:text-white placeholder-neutral-500 focus:outline-none  "
+      class="w-full text-xl border border-transparent bg-transparent resize-none overflow-hidden  dark:text-white placeholder-neutral-500 focus:outline-none  "
       placeholder="¿Qué hay de nuevo?" 
     ></textarea>
+
+    <input type="checkbox" name="isPAD" id="isPAd" checked>
       
     <InputFile/>
 
@@ -22,11 +24,11 @@ const signos = "</>";
 
     <div class="flex justify-between mt-3 p-2">
       <div class="flex gap-4 items-center justify-center">
-        <div class="hover:dark:bg-dark-terciario hover:bg-light-secundario rounded-full p-2 cursor-pointer">{signos}</div>
+        <button class="hover:dark:bg-dark-terciario hover:bg-light-secundario rounded-full p-2 cursor-pointer">{signos}</button>
         <div class="hover:dark:bg-dark-terciario hover:bg-light-secundario rounded-full p-2 cursor-pointer"><svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-photo-scan"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 8h.01" /><path d="M6 13l2.644 -2.644a1.21 1.21 0 0 1 1.712 0l3.644 3.644" /><path d="M13 13l1.644 -1.644a1.21 1.21 0 0 1 1.712 0l1.644 1.644" /><path d="M4 8v-2a2 2 0 0 1 2 -2h2" /><path d="M4 16v2a2 2 0 0 0 2 2h2" /><path d="M16 4h2a2 2 0 0 1 2 2v2" /><path d="M16 20h2a2 2 0 0 0 2 -2v-2" /></svg></div>
         <CodeSnippet />
       </div>
-      <button
+      <button type="submit"
         class="bg-sky-500 hover:bg-sky-700 transition-colors px-4 py-2 rounded-lg cursor-pointer"
         >Publicar</button
       >
@@ -34,14 +36,23 @@ const signos = "</>";
   </form>
 </fieldset>
 
-
-
-<script >
-  document.getElementById("formPost")?.addEventListener("submit", function (e) {
-    e.preventDefault();
-    alert("hola");
-  });
+<script>
+  const formulario = document.getElementById("formPost")
+  formulario?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    
+    const msg = (document.getElementById('mensaje') as HTMLTextAreaElement).value
+    const checkbox = (document.getElementById('isPAd') as HTMLInputElement).checked
+    const media = (document.getElementsByName('multimedia') )
+    const inputMedia = (media[0] as HTMLInputElement).files
+    
+    console.log('data:', msg)
+    console.log('check:', checkbox)
+    console.log('media', inputMedia)
+  })
 </script> 
+
+<!-- Controlar altura automatica del contenedor de comentario -->
 <script>
   const textarea = document.getElementById("mensaje")!;
 

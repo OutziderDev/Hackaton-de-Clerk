@@ -1,7 +1,12 @@
 ---
 
 ---
-<input type="file"name="multimedia"id="multimedia" class="filepond" multiple accept="image/webp, image/jpeg, image/png"/>
+<input type="file" name="multimedia" id="multimedia"
+  class="filepond" 
+  multiple 
+  accept="image/webp, image/jpeg, image/png, image/gif" 
+  data-max-file-size="3MB" 
+  data-max-files="3"/>
 
 <!-- Estilos y Scrip -->
 <style is:global>
@@ -24,13 +29,14 @@
   // Registrar los plugins que necesitas
   FilePond.registerPlugin(
     FilePondPluginImagePreview,
+    FilePondPluginFileValidateSize,
     FilePondPluginFileValidateType
   );
 
   // Inicializar FilePond en el input con ID "multimedia"
   FilePond.create(document.getElementById('multimedia'), {
     credits: false,
-    acceptedFileTypes: ['image/webp', 'image/jpeg','image/png'],
+    acceptedFileTypes: ['image/webp', 'image/jpeg','image/png','image/gif'],
     allowMultiple: true,
     labelFileTypeNotAllowed: 'Solo se permiten imágenes webp o jpeg',
     labelIdle: '🌄​ Arrastra tus imágenes aquí o click para buscar',
