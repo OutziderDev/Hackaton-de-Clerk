@@ -19,6 +19,7 @@
     "astro": "5.7.11",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "svix": "^1.65.0",
     "tailwindcss": "4.1.5"
   },
   "devDependencies": {
