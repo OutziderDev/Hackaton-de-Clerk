@@ -1,7 +1,20 @@
 ---
+import type { usuarios } from "../conts/usuarios";
 import Layout from "../layouts/Layout.astro";
-
-
+import { supabase } from "../lib/supabaseClient";
+/* const { data: pruebas, error } = await supabase.from('pruebas').select('*'); 
+console.log(JSON.stringify(pruebas));  */
+        
+const { data,error } = await supabase
+  .from('pruebas')
+  .insert(    {  usuario: 10584 }  )
+  .select();
+  
+if (error) {
+  console.error('Error al insertar:', error);
+} else {
+  console.log('Registro insertado:', data);
+}  
 ---
 
 <Layout>
@@ -28,6 +41,13 @@ import Layout from "../layouts/Layout.astro";
     </div>
     <button type="submit">Enviar</button>
   </form>
+  <hr>
+  <h2>Datos de la Api de Supa</h2>
+  <div>
+    <!-- <pre>{JSON.stringify(pruebas)}</pre> -->
+     <h1>Insertar Registro</h1>
+    <p>Consulta la consola para ver los resultados.</p>
+  </div>
 </Layout>
 
 <script>
