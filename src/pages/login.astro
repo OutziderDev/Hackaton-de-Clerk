@@ -1,9 +1,14 @@
 ---
-import { SignIn } from "@clerk/astro/components";
+import { SignIn, SignedIn, SignedOut, UserButton, SignInButton } from "@clerk/astro/components";
 ---
 
 <h1>hola</h1>
 
-<SignIn>
-registra
-</SignIn>
+<!-- <SignIn/> -->
+
+ <SignedOut >
+  <SignInButton   mode="modal" />
+</SignedOut>
+<SignedIn >
+  <UserButton />
+</SignedIn>

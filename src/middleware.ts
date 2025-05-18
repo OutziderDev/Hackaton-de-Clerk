@@ -1,4 +1,4 @@
-import { clerkMiddleware,createRouteMatcher } from "@clerk/astro/server";
+import { clerkMiddleware } from "@clerk/astro/server";
 
 /* const isProtectedRoute = createRouteMatcher(["/"])
 
@@ -10,14 +10,5 @@ export const onRequest = clerkMiddleware( (auth, context) => {
   }
 }); */
 
-export const onRequest = clerkMiddleware((auth, context) => {
-  const { userId, redirectToSignIn } = auth();
-  /*
-  if (!userId) {
-    return redirectToSignIn();
-  } */
-  console.log("middleware: userId:", userId);
 
-  // Aquí puedes agregar lógica adicional si es necesario
-  return undefined;
-});
+export const onRequest = clerkMiddleware()
