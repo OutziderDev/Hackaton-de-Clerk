@@ -1,4 +1,5 @@
 import { supabase } from "../../lib/supabaseClient";
+import { verifyWebhook } from "@clerk/astro/webhooks";
 import type { APIRoute } from "astro";
 import { Webhook } from "svix";
 
@@ -19,12 +20,12 @@ export const POST: APIRoute = async ({request}) => {
   
 
   let evt: any;
-  try {
-    evt= whook.verify(payload,headers);
+  evt= whook.verify(payload,headers);
+  /* try {
   } catch (error) {
     console.error("Verificacion fallida de WebHook");
     return new Response('Señal Invalida', {status: 403})
-  }
+  } */
 
   const eventType = evt.type;
 
@@ -46,6 +47,41 @@ export const POST: APIRoute = async ({request}) => {
       return new Response('Error al insertar el usuario', {status:500})
     }
   }
+
+  if (eventType === "user.updated") {
+  const { id, email_addresses, first_name, last_name, username, image_url } = evt.data;
+  const email = email_addresses[0]?.email_address || "";
+
+  const { error } = await supabase
+    .from("usuarios")
+    .update({
+      email,
+      nombre: first_name,
+      apellido: last_name,
+      username,
+      imagen_url: image_url,
+    })
+    .eq("clerk_id", id);
+
+  if (error) {
+    console.error("Error al actualizar usuario:", error);
+    return new Response("Error al actualizar usuario", { status: 500 });
+  }
+}
+
+if (eventType === "user.deleted") {
+  const { id } = evt.data;
+
+  const { error } = await supabase
+    .from("usuarios")
+    .delete()
+    .eq("clerk_id", id);
+
+  if (error) {
+    console.error("Error al eliminar usuario:", error);
+    return new Response("Error al eliminar usuario", { status: 500 });
+  }
+}
   
   return new Response("Webhook recibido", { status: 200 });
 }
