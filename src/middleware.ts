@@ -1,6 +1,7 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/astro/server";
 
  const isProtectedRoute = createRouteMatcher(["/","/formu"])
+ const isLoginRoute = createRouteMatcher(["/login"])
 
 export const onRequest = clerkMiddleware( (auth, context) => {
   const { userId } = auth();
@@ -9,7 +10,8 @@ export const onRequest = clerkMiddleware( (auth, context) => {
     return context.redirect("/login")
   }
 
-}); 
+  if (isLoginRoute(context.request) && userId) {
+    return context.redirect("/")
+  }
 
-
-/* export const onRequest = clerkMiddleware() */
+});
