@@ -3,10 +3,10 @@
 ---
 <input type="file" name="multimedia" id="multimedia"
   class="filepond custon" 
-  multiple 
+   
   accept="image/webp, image/jpeg, image/png, image/gif" 
   data-max-file-size="3MB" 
-  data-max-files="3"/>
+  data-max-files="1"/>
 
 <!-- Estilos y Scrip -->
 <style is:global>
@@ -37,7 +37,7 @@
   FilePond.create(document.getElementById('multimedia'), {
     credits: false,
     acceptedFileTypes: ['image/webp', 'image/jpeg','image/png','image/gif'],
-    allowMultiple: true,
+    allowMultiple: false,
     labelFileTypeNotAllowed: 'Solo se permiten imágenes png, jpeg o gif',
     labelIdle: '🌄​ Arrastra tus imágenes aquí o haz click para añadir',
     fileValidateTypeLabelExpectedTypes: 'Debe ser una imagen png, gif o jpeg',

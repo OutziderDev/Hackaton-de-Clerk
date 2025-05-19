@@ -4,7 +4,7 @@ const signos = "</>";
 ---
 <fieldset   class="p-4 w-full border border-light-terciario dark:border-dark-terciario bg-light-primario dark:bg-dark-secundario rounded-lg">
   <legend class=" dark:text-sky-500">Nueva Publicacion</legend>
-  <form id="formPost" enctype="multipart/form-data" class="w-full">
+  <form id="formPost"  enctype="multipart/form-data" class="w-full">
     
     <textarea
       required
@@ -25,7 +25,7 @@ const signos = "</>";
         <option value="C++">C++</option>
       </select>
       
-      <label for="isPAD" id="labelToPAD" class=" gap-2 text-lg items-center hidden">
+      <label for="isPAD" id="labelToPAD" class="gap-2 text-lg items-center hidden">
         <input type="checkbox" class="size-4 " disabled name="isPAD" id="isPAD" > Pregunta Rapida 
       </label>
     </div>
@@ -42,12 +42,10 @@ const signos = "</>";
       
     <InputFile />
 
-    <!-- <CodeSnippet /> -->
-
     <div class="flex justify-between mt-3 p-2">
       <div class="flex gap-4 items-center justify-center">
-        <div id="btnCode" class="hover:dark:bg-dark-terciario hover:bg-light-secundario rounded-full p-2 cursor-pointer">{signos}</div>
-        <div id="btnMedia" class="hover:dark:bg-dark-terciario hover:bg-light-secundario rounded-full p-2 cursor-pointer"><svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-photo-scan"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 8h.01" /><path d="M6 13l2.644 -2.644a1.21 1.21 0 0 1 1.712 0l3.644 3.644" /><path d="M13 13l1.644 -1.644a1.21 1.21 0 0 1 1.712 0l1.644 1.644" /><path d="M4 8v-2a2 2 0 0 1 2 -2h2" /><path d="M4 16v2a2 2 0 0 0 2 2h2" /><path d="M16 4h2a2 2 0 0 1 2 2v2" /><path d="M16 20h2a2 2 0 0 0 2 -2v-2" /></svg></div>
+        <div id="btnCode" class="dark:bg-dark-terciario  opacity-50 hover:opacity-100 transition  bg-light-secundario  rounded-sm p-2 cursor-pointer">{signos}</div>
+        <div id="btnMedia" class="dark:bg-dark-terciario opacity-50 hover:opacity-100 transition  hidden bg-light-secundario rounded-sm p-2 cursor-pointer"><svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-photo-scan"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 8h.01" /><path d="M6 13l2.644 -2.644a1.21 1.21 0 0 1 1.712 0l3.644 3.644" /><path d="M13 13l1.644 -1.644a1.21 1.21 0 0 1 1.712 0l1.644 1.644" /><path d="M4 8v-2a2 2 0 0 1 2 -2h2" /><path d="M4 16v2a2 2 0 0 0 2 2h2" /><path d="M16 4h2a2 2 0 0 1 2 2v2" /><path d="M16 20h2a2 2 0 0 0 2 -2v-2" /></svg></div>
       </div>
       <button type="submit"
         class="bg-sky-500 hover:bg-sky-700 transition-colors px-4 py-2 rounded-lg cursor-pointer"
@@ -83,6 +81,7 @@ const signos = "</>";
   const media = document.querySelector('.custon')
 
   btnToCode?.addEventListener('click', () => {
+    btnToMedia?.classList.remove('hidden')
     if (textAreaCode) {
       textAreaCode.classList.remove('hidden');
       textAreaCode.style.height = "150px";
@@ -98,12 +97,15 @@ const signos = "</>";
     checkPad?.removeAttribute('disabled')
 
     media?.classList.add('hidden')
+    btnToCode.classList.add('hidden')
   })
 
   btnToMedia?.addEventListener('click', ()=>{
+    
 
     (mensajeTextArea as HTMLTextAreaElement).placeholder = "¿En qué piensas hoy?" 
     
+    btnToCode?.classList.remove('hidden')
     textAreaCode?.setAttribute('disabled', 'true')
     textAreaCode?.classList.add('hidden')
 
@@ -114,7 +116,8 @@ const signos = "</>";
     labelPAd?.classList.add('hidden')
 
     
-    media?.classList.remove('hidden') 
+    media?.classList.remove('hidden')
+    btnToMedia.classList.add('hidden') 
   })
   /* const show = el => el?.classList.remove('hidden') || el?.removeAttribute('disabled');
   const hide = el => el?.classList.add('hidden') || el?.setAttribute('disabled', 'true');
