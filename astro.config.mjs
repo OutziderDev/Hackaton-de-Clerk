@@ -4,10 +4,13 @@ import tailwindcss  from '@tailwindcss/vite';
 import clerk from '@clerk/astro';
 import node from '@astrojs/node'
 import react from '@astrojs/react';
+import { esES } from '@clerk/localizations';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [clerk(), react()],
+  integrations: [clerk({
+    localization: esES,
+  }), react()],
   adapter: node({mode: "standalone"}),
   vite: {
     plugins: [tailwindcss ()],
