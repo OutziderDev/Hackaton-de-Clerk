@@ -17,7 +17,7 @@ const signos = "</>";
 
     <div class="flex flex-col md:flex-row items-center justify-start gap-8 mb-3">
       
-      <select id="lenguajes" required disabled class="hidden bg-light-primario dark:bg-dark-secundario border border-light-terciario dark:border-dark-terciario rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full md:w-1/2 p-2">
+      <select id="lenguajes" name="lenguajes" class="hidden bg-light-primario dark:bg-dark-secundario border border-light-terciario dark:border-dark-terciario rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full md:w-1/2 p-2">
         <option value="Javascript">Javascript</option>
         <option value="React">React</option>
         <option value="Express">Express</option>
@@ -79,7 +79,6 @@ const signos = "</>";
   const btnToMedia = document.getElementById('btnMedia')
   const mensajeTextArea = document.getElementById('mensaje')
   const media = document.querySelector('.custon')
-  media.disabled = true 
 
   btnToCode?.addEventListener('click', () => {
     btnToMedia?.classList.remove('hidden')
@@ -92,7 +91,7 @@ const signos = "</>";
     (mensajeTextArea as HTMLTextAreaElement).placeholder = "Descripción de tu Código"
 
     selecLenguaje?.classList.remove('hidden')
-    selecLenguaje?.removeAttribute('disabled')
+    /* selecLenguaje?.removeAttribute('disabled') */
     selecLenguaje?.setAttribute('required', 'true' )
 
     labelPAd?.classList.remove('hidden')

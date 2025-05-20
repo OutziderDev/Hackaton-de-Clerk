@@ -10,14 +10,14 @@ export const POST: APIRoute = async ( {request, locals}) => {
     const mensaje = formData.get("mensaje");
     const multimedia = formData.get("multimedia");
     const isPAD = formData.has("isPAD");
-    const lenguaje = formData.get("lenguaje");
+    const lenguaje = formData.get("lenguajes");
     const codigo = formData.get("codigo");
-    /* console.log("el form tiene: ", formData);  */
+    /* console.log("el form tiene: ", formData);   */
     
     console.log("el mensaje fue: ", mensaje);
     console.log("el isPad fue: ", isPAD);
     console.log("el codigo fue: ", codigo);
-    console.log(" y su lenguaje fue: ", lenguaje);
+    console.log(" y su lenguaje fue: ", lenguaje); 
     
     
     /* if (!multimedia) {
