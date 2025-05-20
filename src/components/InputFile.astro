@@ -26,7 +26,7 @@
 </style>
 
 <script type="module">
-  // Registrar los plugins que necesitas
+  // Registrar los plugins para el input
   FilePond.registerPlugin(
     FilePondPluginImagePreview,
     FilePondPluginFileValidateSize,
@@ -36,12 +36,14 @@
   // Inicializar FilePond en el input con ID "multimedia"
   FilePond.create(document.getElementById('multimedia'), {
     credits: false,
+    allowReplace: true,
     acceptedFileTypes: ['image/webp', 'image/jpeg','image/png','image/gif'],
     allowMultiple: false,
     labelFileTypeNotAllowed: 'Solo se permiten imágenes png, jpeg o gif',
     labelIdle: '🌄​ Arrastra tus imágenes aquí o haz click para añadir',
     fileValidateTypeLabelExpectedTypes: 'Debe ser una imagen png, gif o jpeg',
-    instantUpload: false //espera al submit
+    instantUpload: false, //espera al submit
+    storeAsFile:true
   });
 
 </script>
