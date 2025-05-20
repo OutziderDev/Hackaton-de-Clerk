@@ -1,0 +1,23 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import LayoutGrid from "../../layouts/LayoutGrid.astro";
+import { supabase } from "../../lib/supabaseClient";
+import PublicacionCard from "../../components/publicaciones/PublicacionCard.astro";
+
+const { id } = Astro.params;
+
+const { data: postData , error } = await supabase
+  .from('posts')
+  .select('*, usuarios(full_name,image_url)') 
+  .eq("id", id)
+  .single();
+---
+<Layout>
+  <LayoutGrid>
+    <div class=" p-2 ">
+      <a href="/"> </a>
+      <PublicacionCard publicacion={postData} />
+      
+    </div>
+  </LayoutGrid>
+</Layout>

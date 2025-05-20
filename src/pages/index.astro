@@ -1,21 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro"
+import LayoutGrid from "../layouts/LayoutGrid.astro"
 import LeftAside from "../sections/LeftAside.astro"
 import Main from "../sections/Main.astro"
 import RighAside from "../sections/RighAside.astro"
 const Tittle: string = "Hackaton Clerk"
 ---
 <Layout tittle={Tittle}>
-  <div class="grid grid-cols-1 md:grid-cols-4 transition-colors">
-    <div class="col-span-1 hidden md:block">
-      <LeftAside/>
-    </div>
-    <div class="col-span-2">
-      <Main/>
-    </div>
-    <div class="col-span-1 hidden md:block">
-      <RighAside/>
-    </div>
-  </div>
-  
+  <LayoutGrid>
+    <Main/>
+  </LayoutGrid>
 </Layout>

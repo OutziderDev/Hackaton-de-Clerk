@@ -1,0 +1,54 @@
+---
+import PublicacionHeader from "./PublicacionHeader.astro";
+import PublicacionSocial from "./PublicacionSocial.astro";
+import { codeToHtml } from "shiki";
+const { publicacion } = Astro.props;
+
+let highlightedCode = null;
+if(publicacion.codigo !== null ){
+   highlightedCode = await codeToHtml(publicacion.codigo, { lang: publicacion.lenguaje, themes: {light: 'light-plus', dark: 'dark-plus'}});
+}  
+  
+---
+
+{ publicacion.multimedia === null && publicacion.codigo === null ? 
+  (
+    <article class="my-3 shadow-md shadow-dark-terciario  p-4 bg-light-primario dark:bg-dark-secundario border border-light-terciario dark:border-dark-terciario rounded-lg hover:bg-zinc-200/40 dark:hover:bg-gray-800/90 transition-colors">
+      <PublicacionHeader publicacion={publicacion} />
+      <PublicacionSocial publicacion={publicacion}/>
+    </article>     
+  ): ''
+} 
+
+{publicacion.multimedia !== null && publicacion.codigo === null ? 
+   (
+    <article class="my-3 shadow-md shadow-dark-terciario  p-4 bg-light-primario dark:bg-dark-secundario border border-light-terciario dark:border-dark-terciario rounded-lg hover:bg-zinc-200/40 dark:hover:bg-gray-800/90 transition-colors">
+      <PublicacionHeader publicacion={publicacion} />
+      <div class="bg-white card dark:bg-[#1e1e1e] border border-light-terciario dark:border-dark-terciario rounded-lg p-4 transition-colors">
+        <img src={publicacion.multimedia} class="h-64 hover:h-75 w-full object-contain transition-all duration-200" alt={`imagen del post de ${publicacion.usuarios.full_name}`}/>
+      </div>          
+      <PublicacionSocial publicacion={publicacion}/>
+    </article>     
+  ): ''
+}
+
+{publicacion.codigo !== null ? 
+   (
+    <article class="my-3 shadow-md shadow-dark-terciario  p-4 bg-light-primario dark:bg-dark-secundario border border-light-terciario dark:border-dark-terciario rounded-lg hover:bg-zinc-200/40 dark:hover:bg-gray-800/90 transition-colors">
+      <PublicacionHeader publicacion={publicacion} />
+      <div class="bg-white card dark:bg-[#1e1e1e] border border-light-terciario dark:border-dark-terciario rounded-lg p-4 transition-colors" set:html={highlightedCode} ></div>
+      <PublicacionSocial publicacion={publicacion}/>
+    </article>     
+  ):''
+}
+
+<style>
+  .card{
+    /* scrollbar-color: rgb(20, 130, 255) transparent;
+    scrollbar-width: thin; */
+
+    pre code  {
+      text-wrap: pretty;
+    }
+  }
+</style>

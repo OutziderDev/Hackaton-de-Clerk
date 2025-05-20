@@ -58,7 +58,7 @@ export const POST: APIRoute = async ( {request, locals}) => {
         /* Obtener URL media en Supa */
         const { data: urlData } = supabase.storage
           .from("posts")
-          .getPublicUrl(`multimedia/${userId?.id}/${multimedia.name}`);
+          .getPublicUrl(`multimedia/${userId?.id}/${randomNumberTimestamp}`);
 
         if (!urlData || !urlData.publicUrl) {
           return new Response("Error al obtener la URL pública de la multimedia del post", {status: 500});

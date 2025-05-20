@@ -1,0 +1,17 @@
+---
+const { publicacion } = Astro.props;
+---
+<div>
+  <div class="flex justify-between items-center">
+    <div class="flex gap-2 items-center">
+        <a href={`/perfil/${publicacion.user_id}`} class="flex items-center gap-2 font-bold text-xl cursor-pointer hover:text-sky-500 transition-colors">
+          <img src={publicacion.usuarios.image_url} class="object-cover size-10 rounded-full" alt={`Foto de perfil de ${publicacion.usuarios.full_name}`}/>
+          <span>{publicacion.usuarios.full_name}</span>
+        </a>
+    </div>
+    <span class="opacity-50">
+      {new Date(publicacion.created_at).toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' })}
+    </span>
+  </div>
+  <p class="my-3">{publicacion.mensaje}</p>
+</div>
