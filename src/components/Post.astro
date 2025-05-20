@@ -4,7 +4,7 @@ const signos = "</>";
 ---
 <fieldset   class="p-4 w-full border border-light-terciario dark:border-dark-terciario bg-light-primario dark:bg-dark-secundario rounded-lg">
   <legend class=" dark:text-sky-500">Nueva Publicacion</legend>
-  <form id="formPost"  enctype="multipart/form-data" class="w-full">
+  <form id="formPost" action="/api/create-post" method="POST" enctype="multipart/form-data" class="w-full">
     
     <textarea
       required
@@ -79,6 +79,7 @@ const signos = "</>";
   const btnToMedia = document.getElementById('btnMedia')
   const mensajeTextArea = document.getElementById('mensaje')
   const media = document.querySelector('.custon')
+  media.disabled = true 
 
   btnToCode?.addEventListener('click', () => {
     btnToMedia?.classList.remove('hidden')
@@ -92,6 +93,7 @@ const signos = "</>";
 
     selecLenguaje?.classList.remove('hidden')
     selecLenguaje?.removeAttribute('disabled')
+    selecLenguaje?.setAttribute('required', 'true' )
 
     labelPAd?.classList.remove('hidden')
     checkPad?.removeAttribute('disabled')
@@ -101,8 +103,6 @@ const signos = "</>";
   })
 
   btnToMedia?.addEventListener('click', ()=>{
-    
-
     (mensajeTextArea as HTMLTextAreaElement).placeholder = "¿En qué piensas hoy?" 
     
     btnToCode?.classList.remove('hidden')
@@ -110,6 +110,7 @@ const signos = "</>";
     textAreaCode?.classList.add('hidden')
 
     selecLenguaje?.setAttribute('disabled', 'true')
+    selecLenguaje?.setAttribute('required', 'false' )
     selecLenguaje?.classList.add('hidden')
 
     checkPad?.setAttribute('disabled', 'true')
@@ -145,7 +146,7 @@ const signos = "</>";
   }); */
 </script>
 
-<script>
+<!-- <script>
   const formulario = document.getElementById("formPost")
   formulario?.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -159,4 +160,4 @@ const signos = "</>";
     console.log('check:', checkbox)
     console.log('media', inputMedia)
   })
-</script> 
+</script>  -->
