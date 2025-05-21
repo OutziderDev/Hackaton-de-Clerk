@@ -1,18 +1,33 @@
-import { useState } from "react"
+// src/components/DarkMode.tsx
+import { useState, useEffect } from "react";
 
 const DarkMode = () => {
-  const [darkMode, setDarkMode] = useState(true)
+  // Inicializa el estado basándose en la clase actual del HTML
+  // Esto es un poco más robusto porque el script `theme-setter.js` ya habrá aplicado la clase
+  const [darkMode, setDarkMode] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return document.documentElement.classList.contains('dark');
+    }
+    return true; // Asume dark por defecto para SSR si no hay window
+  });
+
+  useEffect(() => {
+    // Este useEffect solo se encarga de guardar la preferencia cuando el usuario la cambia
+    if (typeof window !== 'undefined') {
+      document.documentElement.classList.toggle("dark", darkMode);
+      localStorage.setItem("darkMode", String(darkMode));
+    }
+  }, [darkMode]);
 
   const handleDarkModer = () => {
-    setDarkMode(!darkMode)
-    document.documentElement.classList.toggle("dark", !darkMode)
-  }
+    setDarkMode((prevMode) => !prevMode);
+  };
 
-  return(
+  return (
     <>
       <button
         onClick={handleDarkModer}
-        className={`theme-toggle ${darkMode === true ? '': 'theme-toggle--toggled'}`}
+        className={`theme-toggle ${darkMode ? 'theme-toggle--toggled' : ''}`}
         type="button"
         title="Toggle theme"
         aria-label="Toggle theme"
@@ -36,7 +51,7 @@ const DarkMode = () => {
         </svg>
       </button>
     </>
-  )
-}
+  );
+};
 
-export default DarkMode
+export default DarkMode;
