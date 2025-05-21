@@ -5,19 +5,88 @@ import { supabase } from "../../lib/supabaseClient";
 import PublicacionCard from "../../components/publicaciones/PublicacionCard.astro";
 
 const { id } = Astro.params;
+const usuario = Astro.locals.auth().userId;
 
 const { data: postData , error } = await supabase
   .from('posts')
   .select('*, usuarios(full_name,image_url)') 
   .eq("id", id)
   .single();
+
+const { data: AllCommentarios } = await supabase
+  .from('comentarios')
+  .select('*, usuarios(full_name,image_url)')
+  .eq("post_id", id)
+  .order('created_at', { ascending: false });
 ---
 <Layout>
   <LayoutGrid>
     <div class=" p-2 ">
-      <a href="/"> </a>
+      <div class="flex gap-4 items-center">
+        <a href="/" class="hover:bg-black/10 dark:hover:bg-white/10 rounded-sm"> 
+          <svg class="size-8" xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round" ><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 14l-4 -4l4 -4" /><path d="M5 10h11a4 4 0 1 1 0 8h-1" /></svg>
+        </a>
+        <span class="text-xl font-bold"> Publicación</span>
+      </div>
       <PublicacionCard publicacion={postData} />
       
+      <section>
+        <span class="text-xl">Comentarios:</span>
+        <form id="formSendCmt" method="post" class="w-full mt-3 flex flex-col border rounded-sm items-end border-light-terciario dark:border-dark-terciario p-2">
+          <textarea name="comentario" required class="w-full text-lg resize-none text-black dark:text-white focus:outline-0"  maxlength="280" id="comentario" placeholder="Redacta tu comentario aquí.."></textarea>
+          <input type="hidden" id="postId" name="postId" value={id} />
+          <input type="hidden" name="usuarioId" value={usuario} />
+          <button type="submit" class="bg-sky-500 mr-2 mb-2 text-white p-2 rounded-md cursor-pointer hover:bg-sky-600">Enviar</button>
+        </form>
+
+        <section>
+          {AllCommentarios?.map( comentario => (
+            <div class="flex gap-2 w-full items-center border-b border-light-terciario dark:border-dark-terciario p-2 mt-5" >
+              <img src={comentario.usuarios.image_url} alt="Avatar" class="w-10 h-10 rounded-full" />
+              <div class="w-full">
+                <div class="flex justify-between items-center">
+                  <span class="text-md font-bold">{comentario.usuarios.full_name}</span>
+                  <span class="text-md text-gray-500">{new Date(comentario.created_at).toLocaleDateString()}</span>
+                </div>
+
+                <p class="text-xl">
+                  {comentario.mensaje}
+                </p>
+              </div>
+            </div>
+            ))
+          }
+        </section>
+      </section>
+      
+
+
     </div>
   </LayoutGrid>
 </Layout>
+
+<script>
+  const formularioSendCmt = document.getElementById("formSendCmt")
+  const idPost = (document.getElementById("postId") as HTMLInputElement).value
+
+  formularioSendCmt?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const formData = new FormData(formularioSendCmt as HTMLFormElement);
+    const response = await fetch('/api/send-coment', {
+      method: 'POST',
+      body: formData
+    })
+    
+    const message = await response.text();
+
+    if (response.ok) {
+      alert('Comentario enviado')
+      window.location.href = `/publicaciones/${idPost}`;
+    } else {
+      alert(`Error al enviar el comentario: ${message}`);
+    }
+  });
+
+  import { autoResizeTextarea } from "../../lib/autoResizeTextarea";
+  autoResizeTextarea()
+</script>

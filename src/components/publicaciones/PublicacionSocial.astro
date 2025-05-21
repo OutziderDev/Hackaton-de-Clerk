@@ -1,16 +1,23 @@
 ---
 const { publicacion } = Astro.props;
-console.log(publicacion);
+import { supabase } from "../../lib/supabaseClient";
+import LikesPost from "../LikesPost.tsx";
+const  userID  = Astro.locals.auth().userId
 
+const { count, error } = await supabase
+  .from("comentarios")
+  .select('*', { count: 'exact', head: true })
+  .eq("post_id", publicacion.id)
+
+/* const { count: coutLikes, error: errorLikes } = await supabase
+  .from("likes")
+  .select('*', { count: 'exact', head: true})
+  .eq("post_id", publicacion.id) */
 ---
 <div class="mt-5 flex justify-around">
+  <LikesPost client:load id_post={publicacion.id} id_user={userID} />
   <div class="flex items-center gap-2">
-    <button class="cursor-pointer">
-      <svg class="size-6 stroke-2 stroke-red-500 fill-transparent">
-        <use href="/icons/SocialSprite.svg#heart"/>
-      </svg>
-    </button>
-    <span>125</span>
+    <!-- <span>{coutLikes}</span> -->
   </div>
 
   <div class="flex items-center gap-2">
@@ -18,16 +25,16 @@ console.log(publicacion);
       <svg class="size-6 stroke-2 fill-transparent stroke-blue-500">
         <use href="/icons/SocialSprite.svg#message"/>
       </svg>
-      <span>12</span>
+      <span>{count}</span>
     </a>
   </div>
 
-  <div class="flex items-center">
+  <!-- <div class="flex items-center">
     <button class="cursor-pointer">
       <svg class="size-6 stroke-2 stroke-green-500 fill-transparent">
         <use href="/icons/SocialSprite.svg#share"/>
       </svg>
     </button>
     
-  </div>
+  </div> -->
 </div>

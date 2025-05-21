@@ -49,7 +49,7 @@ const signos = "</>";
         <div id="btnMedia" class="dark:bg-dark-terciario opacity-50 hover:opacity-100 transition  hidden bg-light-secundario rounded-sm p-2 cursor-pointer"><svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-photo-scan"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 8h.01" /><path d="M6 13l2.644 -2.644a1.21 1.21 0 0 1 1.712 0l3.644 3.644" /><path d="M13 13l1.644 -1.644a1.21 1.21 0 0 1 1.712 0l1.644 1.644" /><path d="M4 8v-2a2 2 0 0 1 2 -2h2" /><path d="M4 16v2a2 2 0 0 0 2 2h2" /><path d="M16 4h2a2 2 0 0 1 2 2v2" /><path d="M16 20h2a2 2 0 0 0 2 -2v-2" /></svg></div>
       </div>
       <button type="submit"
-        class="bg-sky-500 hover:bg-sky-700 transition-colors px-4 py-2 rounded-lg cursor-pointer"
+        class="bg-sky-500 text-white font-bold hover:bg-sky-600 transition-colors px-4 py-2 rounded-lg cursor-pointer"
         >Publicar
       </button>
     </div>
@@ -58,18 +58,8 @@ const signos = "</>";
 
 
 <script >
-  const textareas = document.querySelectorAll('textarea');
-
-  textareas.forEach(textarea => {
-    textarea.addEventListener("input", () => {
-      textarea.style.height = "auto";
-      textarea.style.height = textarea.scrollHeight + "px";
-    });
-
-    // Ajuste inicial
-    textarea.style.height = "auto";
-    textarea.style.height = textarea.scrollHeight + "px";
-  });
+  import { autoResizeTextarea } from "../lib/autoResizeTextarea";
+  autoResizeTextarea()
 
   /* Administrar los Atributos para Evitar Tabs */
   const textAreaCode = document.getElementById('codigo')
@@ -145,19 +135,3 @@ const signos = "</>";
     show(media);
   }); */
 </script>
-
-<!-- <script>
-  const formulario = document.getElementById("formPost")
-  formulario?.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    
-    const msg = (document.getElementById('mensaje') as HTMLTextAreaElement).value
-    const checkbox = (document.getElementById('isPAD') as HTMLInputElement).checked
-    const media = (document.getElementsByName('multimedia') )
-    const inputMedia = (media[0] as HTMLInputElement)
-    
-    console.log('data:', msg)
-    console.log('check:', checkbox)
-    console.log('media', inputMedia)
-  })
-</script>  -->
