@@ -1,7 +1,7 @@
 ---
 import "../Global.css";
-import Footer from "../sections/Footer.astro";
 import Header from "../sections/Header.astro";
+import { SignedIn } from "@clerk/astro/components"
 ---
 <html lang="es" class="dark">
 	<head>
@@ -27,11 +27,12 @@ import Header from "../sections/Header.astro";
 
 	</head>
 	<body class="bg-light-secundario dark:bg-dark-primario text-black dark:text-white font-outfit transition-colors">
-    <Header/>
+    <SignedIn>
+        <Header/>
+    </SignedIn>
     <main class="max-w-6xl mx-auto">
       <slot>
     </main>
-    <Footer/>
 	</body>
 </html>
 

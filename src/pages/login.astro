@@ -1,14 +1,23 @@
 ---
 import { SignIn, SignedIn, SignedOut, UserButton, SignInButton } from "@clerk/astro/components";
+import Layout from "../layouts/Layout.astro";
+import DarkMode from "../components/DarkMode";
 ---
+<Layout>
+  <div class="flex items-center h-dvh w-full relative ">
+    <div class=" mt-5 absolute top-0 right-4 ">
+      <DarkMode client:load />
+    </div>
+    
+    <div class="w-full relative p-4 text-center">
+      <h1 class="text-6xl font-bold dark:text-white mb-4 animate-bounce duration-500">CodeVerse</h1>
+      <p class="text-xl dark:text-gray-300 mb-8">Comparte tu duda! Comparte tu conocimiento!</p>
+      
+      <SignInButton mode="modal"  class="bg-sky-500 text-white text-lg px-8 py-2 rounded-sm hover:translate-y-1 hover:bg-sky-600 cursor-pointer transition-all" />
+    </div>
+    <div class="w-full relative trans hidden md:block">
+      <img src="images/brand.webp" class="object-cover hover:scale-110 transition-transform" alt="">  
+    </div>
+  </div>
 
-<h1>hola</h1>
-
-<!-- <SignIn/> -->
-
- <SignedOut >
-  <SignInButton   mode="modal" />
-</SignedOut>
-<SignedIn >
-  <UserButton />
-</SignedIn>
+</Layout>
