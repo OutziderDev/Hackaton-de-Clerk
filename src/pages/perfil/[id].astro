@@ -1,5 +1,4 @@
 ---
-import { use } from "react";
 import Layout from "../../layouts/Layout.astro";
 import LayoutGrid from "../../layouts/LayoutGrid.astro";
 
@@ -11,7 +10,7 @@ const dateCreateAt = user?.createdAt
 ---
 <Layout>
   <LayoutGrid>
-    <section class="flex mt-5 justify-around p-2 border border-light-terciario rounded-md">
+    <section class="flex mt-5 justify-around p-2 border border-light-terciario dark:border-dark-terciario rounded-md">
       <div class="">
         <h2 class="text-2xl font-bold text-center text-pretty mt-5">{user?.fullName}</h2>
         <span class="opacity-70 text-xl">@{user?.username}</span>
@@ -33,8 +32,38 @@ const dateCreateAt = user?.createdAt
       <img src={user?.imageUrl} class=" size-42 md:size-48 object-cover transition-all rounded-md" alt="">
     </section>
     <!-- Tabs para Posts -->
-    <section>
-
+    <section class="mt-5 w-full">
+      <div class="flex justify-between items-center w-full border-b mb-4">
+        <button id="tab1" class="px-4 py-2 w-full focus:outline-none dark:text-white rounded-t-sm  border-b-2 border-transparent hover:border-dark-secundario" aria-selected="true">Posts</button>
+        <button id="tab2" class="px-4 py-2 w-full focus:outline-none dark:text-white rounded-t-sm  border-b-2 border-transparent hover:border-dark-secundario">Favoritos</button>
+      </div>
+      <div id="tab-content1" class="block">
+        <p>Aquí van los posts del usuario.</p>
+      </div>
+      <div id="tab-content2" class="hidden">
+        <p>Aquí van los favoritos del usuario.</p>
+      </div>
+        
     </section>
   </LayoutGrid>
 </Layout>
+
+<script type="module">
+  const tabs = [
+    { btn: document.getElementById('tab1'), content: document.getElementById('tab-content1') },
+    { btn: document.getElementById('tab2'), content: document.getElementById('tab-content2') },
+  ];
+  tabs.forEach((tab, idx) => {
+    tab.btn.addEventListener('click', () => {
+      tabs.forEach((t, i) => {
+        t.content.classList.toggle('hidden', i !== idx);
+        t.content.classList.toggle('block', i === idx);
+        t.btn.setAttribute('aria-selected', i === idx);
+        t.btn.classList.toggle('bg-black', i === idx);
+        t.btn.classList.toggle('text-white', i === idx);
+        t.btn.classList.toggle('dark:bg-white/20', i === idx); 
+        t.btn.classList.toggle('border-dark-secundario', i === idx);
+      });
+    });
+  });
+</script>
