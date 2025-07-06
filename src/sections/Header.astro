@@ -1,14 +1,26 @@
 ---
 import DarkMode from '../components/DarkMode'
 import { UserButton } from "@clerk/astro/components";
+import Image from "astro/components/Image.astro";
+import LogoBrand from "../assets/logo.webp"
 ---
-<header class="sticky top-0">
+<header class="sticky top-0 z-50">
   <nav class="w-full h-15 bg-transparent backdrop-blur-md  flex items-center justify-between p-2 border-b-1 border-light-secundario dark:border-dark-terciario max-w-6xl mx-auto">
-    <a href="/"><h1 class="dark:text-white font-bold text-2xl flex items-center">Hackaton Clerk</h1></a>
+    <a href="/" class="flex items-center justify-center gap-2">
+      <Image src={LogoBrand} class="size-10" alt={"Icono de la web para la barra de navegación"} />
+      <h1 class="dark:text-white font-bold text-2xl flex items-center">CodeVerse</h1>
+    </a>
     <ul class="dark:text-white flex gap-4 text-xl items-center">
-      <a href="/" >Inicio</a>
-      <li>Search</li>
-      <li>About</li>
+      <a href="/" class="py-1 px-2 flex gap-2 items-center hover:bg-dark-terciario rounded-sm">
+        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l-2 0l9 -9l9 9l-2 0" /><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>
+        Inicio
+      </a>
+      <a href="/" class="py-1 px-2 flex gap-2 items-center hover:bg-dark-terciario rounded-sm">
+        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg>
+        Explorar
+      </a>
+      
+      <!-- <li>About</li> -->
       <DarkMode client:load/>
       <UserButton />
     </ul>

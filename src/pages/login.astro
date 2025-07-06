@@ -2,6 +2,8 @@
 import { SignInButton } from "@clerk/astro/components";
 import Layout from "../layouts/Layout.astro";
 import DarkMode from "../components/DarkMode";
+import Image from "astro/components/Image.astro";
+import LogoBrand from "../assets/logo.webp"
 ---
 <Layout>
   <div class="flex items-center h-dvh w-full relative ">
@@ -9,11 +11,14 @@ import DarkMode from "../components/DarkMode";
       <DarkMode client:load />
     </div>
     
-    <div class="w-full relative p-4 text-center">
-      <h1 class="text-6xl font-bold dark:text-white mb-4 animate-bounce duration-500">CodeVerse</h1>
+    <div class="w-full flex flex-col justify-center items-center p-4 text-center">
+      <Image src={LogoBrand}  alt={"Logo de la web para inicio de sesión"} width={LogoBrand.width} height={LogoBrand.height} />
+      <h1 class="text-6xl font-bold dark:text-white mb-4 duration-500"> CodeVerse</h1>
       <p class="text-xl dark:text-gray-300 mb-8">Comparte tu duda! Comparte tu conocimiento!</p>
       
-      <SignInButton mode="modal"  class="bg-sky-500 text-white text-lg px-8 py-2 rounded-sm hover:translate-y-1 hover:bg-sky-600 cursor-pointer transition-all" />
+      <SignInButton mode="modal"  class="bg-sky-500 text-white text-lg px-8 py-2 rounded-sm hover:translate-y-1 hover:bg-sky-600 cursor-pointer transition-all" >
+        Inicia sesión
+      </SignInButton>
     </div>
     <div class="w-full relative trans hidden md:block">
       <img src="images/brand.webp" class="object-cover hover:scale-110 transition-transform" alt="">  
