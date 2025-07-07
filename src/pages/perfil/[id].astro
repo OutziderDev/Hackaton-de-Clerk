@@ -10,8 +10,57 @@ const dateCreateAt = user?.createdAt
 ---
 <Layout>
   <LayoutGrid>
-    <section class="flex mt-5 justify-around p-2 border border-light-terciario dark:border-dark-terciario rounded-md">
-      <div class="">
+    <section class="w-full h-[50%] mt-5 overflow-hidden border  border-light-terciario dark:border-dark-terciario rounded-md relative">
+      <div class="w-full h-[35%] ">
+        <img src={user?.imageUrl} class="w-full h-full select-none object-cover object-center blur-2xl" alt="filtro para imagenes">
+      </div>
+      <img src={user?.imageUrl} class="absolute border border-black left-1/2 -translate-x-1/2 top-[35%] -translate-y-1/2 size-36 object-cover transition-all rounded-full" alt="">
+      
+      <div class="w-full h-full dark:bg-blue-700/5 pt-20">
+        <h2 class="text-2xl font-bold text-center text-pretty ">{user?.fullName}</h2>
+        <span class="block opacity-70 text-xl text-center">@{user?.username}</span>
+        <!-- <div class="flex items-center opacity-50">
+          <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-calendar-week"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /><path d="M7 14h.013" /><path d="M10.01 14h.005" /><path d="M13.01 14h.005" /><path d="M16.015 14h.005" /><path d="M13.015 17h.005" /><path d="M7.01 17h.005" /><path d="M10.01 17h.005" />
+          </svg>Unido el: {dateCreateAt}
+        </div> -->
+        <div class="flex items-center justify-center  mt-3 gap-8">
+          <div class=" flex items-center justify-center flex-col">
+            <span class="font-bold font-mono text-xl">1550</span>
+            <p class="opacity-60 font-bold">Seguidores</p>
+          </div>
+          <div class=" flex items-center justify-center flex-col">
+            <span class="font-bold font-mono text-xl">1550</span>
+            <p class="opacity-60 font-bold">Seguidos</p>
+          </div>
+          <div class=" flex items-center justify-center flex-col">
+            <span class="font-bold font-mono text-xl">1550</span>
+            <p class="opacity-60 font-bold">Publicacion</p>
+          </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row items-center justify-center gap-4  mt-5">
+           
+          <fieldset  class="p-2 border border-light-terciario dark:border-dark-terciario bg-light-primario dark:bg-dark-secundario rounded-lg">
+            <legend class=" dark:text-sky-300">Nueva Publicacion</legend>
+            <ul class="flex flex-row gap-3">
+              <li>Javascript</li>
+              <li>Node</li>
+              <li>Css</li>
+            </ul>
+          </fieldset>
+
+          <fieldset  class="p-2 border border-light-terciario dark:border-dark-terciario bg-light-primario dark:bg-dark-secundario rounded-lg">
+            <legend class="">Redes Sociales</legend>
+            <ul class="flex flex-row gap-3">
+              <li>Javascript</li>
+              <li>Node</li>
+              <li>Css</li>
+            </ul>
+          </fieldset>
+        </div>
+
+      </div>
+     <!--  <div class="">
         <h2 class="text-2xl font-bold text-center text-pretty mt-5">{user?.fullName}</h2>
         <span class="opacity-70 text-xl">@{user?.username}</span>
         <div class="flex items-center opacity-50">
@@ -20,16 +69,16 @@ const dateCreateAt = user?.createdAt
         </div>
         <div class="flex gap-4 items-center justify-center mt-3">
           <div class=" flex flex-col items-center bg-light-primario rounded-md overflow-hidden shadow dark:shadow-none">
-            <p class="bg-dark-secundario  text-white  text-lg px-2 py-1">Seguidores</p>
+            <p class="bg-sky-600  text-white  text-lg px-2 py-1">Seguidores</p>
             <p class="font-bold text-lg p-1 dark:text-black">0</p>
           </div>
           <div class=" flex flex-col items-center bg-light-primario rounded-md overflow-hidden shadow dark:shadow-none">
-            <p class="bg-dark-secundario  text-white  text-lg px-2 py-1">Seguidos</p>
+            <p class="bg-sky-600 text-white  text-lg px-2 py-1">Seguidos</p>
             <p class="font-bold text-lg p-1 dark:text-black">0</p>
           </div>
         </div>
       </div>
-      <img src={user?.imageUrl} class=" size-42 md:size-48 object-cover transition-all rounded-md" alt="">
+      <img src={user?.imageUrl} class=" size-42 md:size-48 object-cover transition-all rounded-md" alt=""> -->
     </section>
     <!-- Tabs para Posts -->
     <section class="mt-5 w-full">
