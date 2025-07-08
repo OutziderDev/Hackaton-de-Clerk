@@ -1,7 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import LayoutGrid from "../../layouts/LayoutGrid.astro";
-
+import JsIcon from '../../assets/icons/lenguajes/javascript.svg'
 const user = await Astro.locals.currentUser()
 const dateCreateAt = user?.createdAt
   ? new Date(user.createdAt).toLocaleDateString('es-ES')
@@ -41,9 +41,12 @@ const dateCreateAt = user?.createdAt
         <div class="flex flex-col md:flex-row items-center justify-center gap-4  mt-5">
            
           <fieldset  class="p-2 border border-light-terciario dark:border-dark-terciario bg-light-primario dark:bg-dark-secundario rounded-lg">
-            <legend class=" dark:text-sky-300">Nueva Publicacion</legend>
-            <ul class="flex flex-row gap-3">
-              <li>Javascript</li>
+            <legend class=" dark:text-sky-300">Herramientas</legend>
+            <ul class="flex flex-row items-center">
+              <div class=" ">
+                <JsIcon class="size-10" />
+                 
+              </div>
               <li>Node</li>
               <li>Css</li>
             </ul>
