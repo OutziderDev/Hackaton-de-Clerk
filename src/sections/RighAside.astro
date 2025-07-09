@@ -5,18 +5,18 @@ import { usuarios } from "../conts/usuarios"
   <h3 class="text-zinc-400 font-bold text-xl ">Usuarios Recomendados</h3>
   {
     usuarios.map((usuario) => (
-      <a href="/">
-        <div class="flex flex-row border border-light-terciario dark:border-dark-terciario rounded-md my-3 overflow-hidden h-28 w-full items-center justify-center gap-6 bg-light-primario dark:bg-dark-secundario transition-colors relative">
+      <a href="/" >
+        <div class=" flex flex-row border border-light-terciario dark:border-dark-terciario rounded-md my-3 overflow-hidden h-24 w-full items-center justify-center gap-6 bg-light-primario hover:bg-light-secundario dark:bg-dark-secundario dark:hover:bg-dark-terciario transition-colors relative">
           
-          <div class="absolute left-4 z-30">
+          <div class="absolute left-4 z-30 flex flex-col items-start justify-center">
             <h4 class="text-lg font-bold">{usuario.nombre}</h4>
-            <p class="text-sm text-zinc-500">@{usuario.username}</p>
-            <button class="flex flex-row items-center bg-sky-400 hover:bg-sky-500 rounded-sm px-1 py-0 mt-2 cursor-pointer">
-              <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-plus"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>
+            <span class="text-md text-zinc-500 -mt-2">@{usuario.username}</span>
+            <button class="flex w-fit flex-row items-center bg-sky-400 hover:bg-sky-500 rounded-sm px-2 py-0.5 cursor-pointer text-white">
+              <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>
               Seguir</button>
           </div>
           <div class="absolute right-10 translate-x-1/2 z-20">
-            <img src={`${usuario.avatar}`} class="object-cover size-40 rounded-full" alt={`Imagen de ${usuario.nombre}`}/>
+            <img src={`${usuario.avatar}`} class="object-cover size-36 rounded-full" alt={`Imagen de ${usuario.nombre}`}/>
           </div>
         </div>
       </a>
