@@ -6,23 +6,43 @@ import Image from "astro/components/Image.astro";
 import LogoBrand from "../assets/logo.webp"
 ---
 <Layout>
-  <div class="flex items-center h-dvh w-full relative ">
+  <div class="flex flex-col md:flex-row items-center h-dvh w-full relative ">
     <div class=" mt-5 absolute top-0 right-4 ">
       <DarkMode client:load />
     </div>
     
-    <div class="w-full flex flex-col justify-center items-center p-4 text-center">
-      <Image src={LogoBrand}  alt={"Logo de la web para inicio de sesión"} width={LogoBrand.width} height={LogoBrand.height} />
-      <h1 class="text-6xl font-bold dark:text-white mb-4 duration-500"> CodeVerse</h1>
-      <p class="text-xl dark:text-gray-300 mb-8">Comparte tu duda! Comparte tu conocimiento!</p>
+    <div class="w-full flex flex-col justify-center items-center p-4 text-center order-2 md:order-1">
+      <h1 class="text-5xl md:text-7xl font-bold dark:text-white mb-4 duration-500"> CodeVerse</h1>
+      <p class="text-xl md:text-2xl dark:text-gray-300 mb-8">Comparte tu duda! Comparte tu conocimiento!</p>
       
       <SignInButton mode="modal"  class="bg-sky-500 text-white text-lg px-8 py-2 rounded-sm hover:translate-y-1 hover:bg-sky-600 cursor-pointer transition-all" >
         Inicia sesión
       </SignInButton>
     </div>
-    <div class="w-full relative trans hidden md:block">
-      <img src="images/brand.webp" class="object-cover hover:scale-110 transition-transform" alt="">  
+    <div class="w-2/3 md:w-full  mt-20 md:mt-0 md:order-2 perspective-distant flex items-center justify-center">
+      <div class="animation-rotate transform-3d">
+        <img src={LogoBrand.src} loading="eager" decoding="sync" width={LogoBrand.width} height={LogoBrand.height} class="block m-0" alt="Logo de la web para el inicio de sesión">
+      </div>
+      <!-- <div class="absolute"> 
+        <img src={LogoBrand.src} width={LogoBrand.width} height={LogoBrand.height} alt="Logo de la web para el inicio de sesión">
+      </div> -->
     </div>
   </div>
 
 </Layout>
+
+<style>
+  .animation-rotate {
+    animation: rotate 9s infinite  ease-in-out;
+    transform-origin: center;
+  }
+
+  @keyframes rotate {
+    0% {
+      transform: rotateY(0deg);
+    }
+    100% {
+      transform: rotateY(360deg)
+    }
+  }
+</style>
